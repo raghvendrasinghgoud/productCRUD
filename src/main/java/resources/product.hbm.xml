@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="product.entities.Product"  >
+    		<id name="id" column="pid" >
+    			<generator class="identity"></generator>
+    		</id>
+    		<property name="name" column="pname" />
+    		<property name="price" column="pprice" />
+    		<property name="brand" column="pbrand" />
+    		
+    		<property name="description" column="pdescription" />    
+    			
+    		</class>
+    </hibernate-mapping>

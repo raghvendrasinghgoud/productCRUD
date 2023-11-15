@@ -1,0 +1,71 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+			"https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+			
+			
+			
+			
+			
+			
+			<beans>
+			
+			<!-- controller mapping -->
+			
+			<bean name="/product" class="product.controller.UserHandle" autowire="byType" ></bean>
+			<bean name="/" class="product.controller.AddProduct" ></bean>
+			<bean name="/del" class="product.controller.DeleteProduct" autowire="byType" ></bean>
+			<bean name="/up" class="product.controller.UpdateProduct" autowire="byType" ></bean>
+			<bean name="/get" class="product.controller.getProducts" autowire="byType" ></bean>
+			<!-- view resolver -->
+			
+			<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+				<property name="prefix" value="/output/"></property>
+				<property name="suffix" value=".jsp"></property>
+			</bean>
+			
+			
+			
+			<!-- DAO config -->
+				<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+					<constructor-arg index="0" value="jdbc:mysql://localhost:3306/newproduct"></constructor-arg>
+					<constructor-arg index="1" value="root"></constructor-arg>
+					<constructor-arg index="2" value="root"></constructor-arg>
+					<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+				</bean>
+				<bean id="sf" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+					<property name="dataSource" ref="ds"></property>
+					<property name="hibernateProperties">
+						<props>
+							<prop key="hibernate.hbm2ddl.auto">update</prop>
+							<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+							<prop key="hibernate.show_sql">true</prop>
+							<prop key="hibernate.format_sql">true</prop>
+						</props>
+					</property>
+					<property name="mappingResources" >
+						<list >
+							<value>resources/product.hbm.xml</value>
+						</list>
+					</property>
+				</bean>
+				<bean id="ht" class="org.springframework.orm.hibernate5.HibernateTemplate">
+					<property name="sessionFactory" ref="sf"></property>
+					<property name="checkWriteOperations" value="false"></property>
+				</bean>
+				<bean name="pd" class="product.dao.ProductDaoImpl" >
+					<constructor-arg  ref="ht"></constructor-arg>
+					<constructor-arg  ref="transactionTemplate"></constructor-arg>
+				</bean>
+				
+				<!-- transaction config -->
+				
+				
+				<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+				  <property name="sessionFactory" ref="sf" />
+				</bean>
+				
+				<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+					<constructor-arg ref="transactionManager"></constructor-arg>
+				</bean>
+				
+								
+			</beans>
