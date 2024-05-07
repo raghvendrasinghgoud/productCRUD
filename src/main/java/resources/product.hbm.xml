@@ -7,11 +7,12 @@
     		<id name="id" column="pid" >
     			<generator class="identity"></generator>
     		</id>
-    		<property name="name" column="pname" />
-    		<property name="price" column="pprice" />
-    		<property name="brand" column="pbrand" />
+    		<property name="name" column="pname" not-null="false" />
+    		<property name="price" column="pprice" not-null="false" />
+    		<property name="brand" column="pbrand" not-null="false" />
     		
-    		<property name="description" column="pdescription" />    
-    			
+    		<property name="description" column="pdescription" not-null="false" />    
+    		<property name="quantity" column="pquantity" not-null="false" />    
+    			<property name="imageName" column="pimagename" not-null="false" />
     		</class>
     </hibernate-mapping>

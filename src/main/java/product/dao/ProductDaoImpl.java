@@ -2,9 +2,11 @@ package product.dao;
 
 import java.util.List;
 
-
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -85,4 +87,19 @@ public class ProductDaoImpl implements ProductDao {
 		
 	}
 
+
+
+	@Override
+	public int productsCount() {
+			int res=Integer.parseInt(transactionTemplate.execute(status-> {
+			
+				
+		SQLQuery<Object> query=ht.getSessionFactory().getCurrentSession().createSQLQuery("select auto_increment from information_schema.TABLES where table_schema='newproduct' and table_name='product'");
+	
+		 return query.list().get(0);
+		 			
+		}).toString());
+		 
+		return res;
+		}
 }

@@ -11,25 +11,49 @@ public class Product {
 	private float price;
 	private String brand;
 	private String description;
-	public Product(String name, float price, String brand, String description) {
+	private int quantity;
+	private String imageName;
+	public Product(String name, float price, String brand, String description, int quantity, String imageName) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.brand = brand;
 		this.description = description;
+		this.quantity=quantity;
+		this.imageName=imageName;
 	}
 	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	public Product() {
 		super();
 	}
 
-	public Product(int id, String name, float price, String brand, String description) {
+	public Product(int id, String name, float price, String brand, String description, int quantity, String imageName) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.brand = brand;
 		this.description = description;
+		this.quantity=quantity;
+		this.imageName=imageName;
+	}
+
+	
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public int getId() {

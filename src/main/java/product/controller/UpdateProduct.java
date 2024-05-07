@@ -22,7 +22,7 @@ public class UpdateProduct implements Controller {
 		
 		Map<String,Object> map=new HashMap<>();
 		map.put("product",product);
-		return new ModelAndView("index",map);
+		return new ModelAndView("product",map);
 	}
 	public ProductDao getPd() {
 		return pd;

@@ -1,17 +1,24 @@
 
-<%@ page isELIgnored="false"%>
-<html>
+
+	<%@ include file="cdn.jsp" %>
+</head>
+<title>add product</title>
 <body>
-<h2>Product Management</h2>
-<a href="get"><button>Show Products</button></a>
-<form action="product" method="post">
-	<input type="text" name="id" value="${requestScope.product.getId()}" hidden></br></br>
-	Name: <input type="text" name="pname" value="${requestScope.product.getName()}" /><br/><br/>
-	Price: <input type="number" name="pprice" value="${requestScope.product.getPrice()}" /><br/><br/>
-	Brand: <input type="text" name="pbrand" value="${requestScope.product.getBrand()}" /><br/><br/>
-	Description: <textarea rows="5" cols="25" name="pdescription" >${requestScope.product.getDescription()}</textarea>
-	<input type="submit" />
-	
-</form>
+
+<%@ include file="header.jsp" %>
+
+<div class="container mt-5 row" >
+
+<div class="col-8">
+<h3>Add Product</h3>
+</div>
+<div class="col-4">
+<a href="<%= request.getContextPath() %>/get"><button type="submit" class="btn btn-primary" >Show Products</button></a>
+</div>
+<div class="" >
+
+
+</div>
+</div>
 </body>
 </html>

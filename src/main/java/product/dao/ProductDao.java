@@ -8,5 +8,6 @@ public interface ProductDao {
 	public Product find(int id);
 	public void delete(Product product);
 	public List<Product> findAll();
+	public int productsCount();
 	
 }
